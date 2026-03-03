@@ -1,8 +1,4 @@
 Microservices Lab - SE4010
-https://img.shields.io/badge/Java-21-orange.svg
-https://img.shields.io/badge/Spring%2520Boot-3.2.3-brightgreen.svg
-https://img.shields.io/badge/Docker-24.0-blue.svg
-https://img.shields.io/badge/Postman-Collection-orange.svg
 
 📋 Lab Overview
 This project implements a complete microservices system with four independent services communicating through an API Gateway. Each service runs in its own Docker container and can be developed using different technology stacks.
