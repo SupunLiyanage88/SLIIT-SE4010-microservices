@@ -4,6 +4,15 @@
 
 This project implements a complete microservices system with four independent services communicating through an API Gateway. Each service runs in its own Docker container and can be developed using different technology stacks.
 
+## 📸 System Screenshots
+
+### 🛣️ API Gateway
+
+<img width="1919" height="1026" alt="Screenshot 2026-03-04 020633" src="https://github.com/user-attachments/assets/4378d332-582c-4e2e-b724-a293be21e6a2" />
+<img width="1919" height="1025" alt="Screenshot 2026-03-04 020610" src="https://github.com/user-attachments/assets/98399a0a-a34c-4722-b5c3-92632f9d91cf" />
+<img width="1919" height="1017" alt="Screenshot 2026-03-04 020621" src="https://github.com/user-attachments/assets/5302e8c0-3c56-4b0c-8db0-64c548496f85" />
+
+
 ## System Architecture
 
 Client (Port 8080)
