@@ -136,7 +136,7 @@ Postman Collection
 https://run.pstmn.io/button.svg
 
 Sample Test Workflow
-Create an Item
+1. Create an Item
 
 json
 POST http://localhost:8080/items
@@ -144,7 +144,7 @@ POST http://localhost:8080/items
     "name": "Gaming Laptop",
     "price": 1499.99
 }
-Create an Order
+2. Create an Order
 
 json
 POST http://localhost:8080/orders
@@ -153,7 +153,7 @@ POST http://localhost:8080/orders
     "quantity": 1,
     "customerId": "C123"
 }
-Process Payment
+3. Process Payment
 
 json
 POST http://localhost:8080/payments/process
@@ -162,7 +162,7 @@ POST http://localhost:8080/payments/process
     "amount": 1499.99,
     "method": "CREDIT_CARD"
 }
-Verify Data
+4. Verify Data
 
 bash
 curl http://localhost:8080/items
@@ -181,6 +181,16 @@ curl -X POST http://localhost:8080/items \
 
 echo -e "\n\n=== Getting All Items ==="
 curl http://localhost:8080/items
+
+echo -e "\n\n=== Creating Order ==="
+curl -X POST http://localhost:8080/orders \
+  -H "Content-Type: application/json" \
+  -d '{"item":"Laptop","quantity":2,"customerId":"C001"}'
+
+echo -e "\n\n=== Processing Payment ==="
+curl -X POST http://localhost:8080/payments/process \
+  -H "Content-Type: application/json" \
+  -d '{"orderId":1,"amount":1299.99,"method":"CARD"}'
 
 echo -e "\n\n=== Testing Complete ==="
 🐳 Docker Commands
@@ -223,18 +233,23 @@ docker-compose exec api-gateway curl http://item-service:8081/items
 
 ⚠️ Troubleshooting
 Common Issues & Solutions
-Port already in use
+1. Port already in use
 
 bash
+# Windows
 netstat -ano | findstr :8080
-# Kill the process using the port
-Services not starting
+taskkill /PID <PID> /F
+
+# Linux/Mac
+lsof -i :8080
+kill -9 <PID>
+2. Services not starting
 
 bash
 docker-compose down
 docker-compose build --no-cache
 docker-compose up
-Cannot connect to services
+3. Cannot connect to services
 
 bash
 # Check if services are running
@@ -242,11 +257,19 @@ docker-compose ps
 
 # Check logs
 docker-compose logs -f
-API Gateway 404 errors
+
+# Test direct connection
+curl http://localhost:8081/items
+curl http://localhost:8082/orders
+curl http://localhost:8083/payments
+4. API Gateway 404 errors
 
 bash
-# Verify routing configuration
+# Check gateway configuration
 docker-compose exec api-gateway cat /app/application.yml
+
+# Test internal connectivity
+docker-compose exec api-gateway curl http://item-service:8081/items
 📝 Submission Requirements
 Complete working microservices system
 
@@ -258,4 +281,4 @@ Postman collection with tests
 
 Public GitHub repository
 
-This README file
+Comprehensive README file
